@@ -1,0 +1,58 @@
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.swp
+*.swo
+*.bak
+
+# Virtual environment
+venv/
+env/
+.virtualenv/
+
+# Django
+*.log
+*.pot
+*.pyc
+*.pyo
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+
+# TailwindCSS
+node_modules/
+tailwind.config.js
+postcss.config.js
+package-lock.json
+yarn.lock
+npm-debug.log*
+.pnp/
+.pnp.js
+
+# CSS Build Output
+static/css/*.css
+static/css/*.css.map
+static/js/*.js
+static/js/*.js.map
+
+# MacOS
+.DS_Store
+
+# VSCode
+.vscode/
+
+# JetBrains IDEs
+.idea/
+
+# PyCharm
+*.iml
+*.ipr
+*.iws
+
+# System files
+Thumbs.db
+desktop.ini
+
