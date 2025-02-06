@@ -1,4 +1,5 @@
 from django.db import models
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 
 from .forms import AttendanceForm
@@ -14,6 +15,7 @@ def attendance_form(request):
     return render(request, 'index.html', {
         'students': students
     })
+
 
 def search_students(request):
     """根據前端輸入的文字，動態回傳符合的學生清單"""
@@ -31,12 +33,12 @@ def search_students(request):
         'students': students
     })
 
-
-def select_student(request):
-    student_id = request.GET.get('student_id')
+# Reponse with html that displace the student information
+def select_student(request, student_id):
+    print("Debug | select_student - student_id:", student_id)
     student = get_object_or_404(Student, pk=student_id)
     return render(request, 'partial/student_selected.html', {
-        'student': student
+        'student':student
     })
 
 

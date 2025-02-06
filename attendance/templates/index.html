@@ -31,8 +31,7 @@
                            hx-target="#studentSuggestions"
                            hx-swap="innerHTML"
                            autocomplete="off" />
-                    <!-- 隱藏的實際 student_id -->
-                    <input type="hidden" id="student_id" name="student_id" />
+                    <input type="hidden" value = "" id="student_id" name="student_id" />
                     <!-- 用來顯示學生建議清單的區塊 -->
                     <!-- position: absolute; 可以讓你在需要的時候做浮動下拉清單 -->
                     <div id="studentSuggestions"
@@ -75,16 +74,9 @@
         </div>
     </body>
     <script>
-    document.addEventListener('click', function (event) {
-        const searchBlock = document.getElementById('studentSearch');
-        const suggestions = document.getElementById('studentSuggestions');
+    
+    document.getElementById('student_id').value = document.getElementById('studentSearch').value;
 
-        // If the suggestions exist and the click is outside the searchBlock...
-        if (suggestions && !searchBlock.contains(event.target)) {
-        // Hide the suggestion list
-         suggestions.classList.add('hidden');
-        }
-    });
     document.addEventListener('click', function (event) {
         const searchBlock = document.getElementById('studentSearch');
         const suggestions = document.getElementById('studentSuggestions');
