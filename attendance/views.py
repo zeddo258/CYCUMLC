@@ -6,13 +6,16 @@ from .forms import AttendanceForm
 from .models import AttendanceRecord, Class, Student
 
 
+def index(request):
+    return render(request, 'index.html')
+
 def attendance_form(request):
     '''
     if request.user.is_authenticated:
         redirect('login')
     '''
     students = Student.objects.all()
-    return render(request, 'index.html', {
+    return render(request, 'partial/attendance_form.html', {
         'students': students
     })
 

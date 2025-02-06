@@ -1,0 +1,60 @@
+<form action="{% url 'submit_attendance' %}"
+      method="post"
+      class="relative p-8 w-full max-w-md bg-white rounded shadow-md">
+    {% csrf_token %}
+    <h2 class="mb-6 text-2xl font-bold text-center">出勤紀錄</h2>
+    {% if success %}<div class="p-4 mb-4 text-green-800 bg-green-100 rounded">出勤紀錄已成功送出！</div>{% endif %}
+    <!-- 學生搜尋區塊 -->
+    <div class="mb-4">
+        <label for="studentSearch" class="block mb-1 font-medium">搜尋學生</label>
+        <!-- 文字輸入框：typing 時呼叫後端來查詢相似的學生清單 -->
+        <input type="text"
+               id="studentSearch"
+               name="studentSearch"
+               placeholder="輸入學生名稱或學號"
+               class="p-2 w-full rounded border-gray-300 focus:ring focus:outline-none"
+               hx-get="/search-students/"
+               hx-trigger="keyup changed delay:300ms, click"
+               hx-target="#studentSuggestions"
+               hx-swap="innerHTML transition:true"
+               autocomplete="off" />
+        <input type="hidden" value = "" id="student_id" name="student_id" />
+        <!-- 用來顯示學生建議清單的區塊 -->
+        <!-- position: absolute; 可以讓你在需要的時候做浮動下拉清單 -->
+        <div id="studentSuggestions"
+             class="hidden absolute z-50 mt-1 w-full bg-white border border-gray-300 shadow">
+            <!-- partial: student_suggestions.html 會動態插入在這裡 -->
+        </div>
+    </div>
+    <!-- 班級 -->
+    <div class="mb-4">
+        <label for="class_id" class="block mb-1 font-medium">班級</label>
+        <select id="class_id"
+                name="class_id"
+                class="p-2 w-full rounded border-gray-300 focus:ring focus:outline-none">
+            <option value="">選擇班級</option>
+            {% for c in classes %}<option value="{{ c.id }}">{{ c.name }}</option>{% endfor %}
+        </select>
+    </div>
+    <!-- 日期 -->
+    <div class="mb-4">
+        <label for="date" class="block mb-1 font-medium">日期</label>
+        <input type="date"
+               id="date"
+               name="date"
+               class="p-2 w-full rounded border-gray-300 focus:ring focus:outline-none" />
+    </div>
+    <!-- 到達時間 -->
+    <div class="mb-4">
+        <label for="arrival_time" class="block mb-1 font-medium">到達時間</label>
+        <input type="time"
+               id="arrival_time"
+               name="arrival_time"
+               class="p-2 w-full rounded border-gray-300 focus:ring focus:outline-none" />
+    </div>
+    <!-- 送出按鈕 -->
+    <button type="submit"
+            class="py-2 px-4 w-full text-white bg-blue-500 rounded transition duration-200 hover:bg-blue-600">
+        送出
+    </button>
+</form>
