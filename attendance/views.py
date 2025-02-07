@@ -14,14 +14,16 @@ def attendance_form(request):
     if request.user.is_authenticated:
         redirect('login')
     '''
+
     students = Student.objects.all()
-    return render(request, 'partial/attendance_form.html', {
+    return render(request, 'partial/crud_students.html', {
         'students': students
     })
 
 
 def search_students(request):
     """根據前端輸入的文字，動態回傳符合的學生清單"""
+
     query = request.GET.get('studentSearch', '').strip()  # 使用者打的文字
     print("Debug | search_students - query:", query)  # 印出 query 值
     students = []

@@ -1,6 +1,6 @@
 <form action="{% url 'submit_attendance' %}"
       method="post"
-      class="relative p-8 w-full max-w-md bg-white rounded shadow-md">
+      class="relative p-2 w-full max-w-md bg-white rounded shadow-md">
     {% csrf_token %}
     <h2 class="mb-6 text-2xl font-bold text-center">出勤紀錄</h2>
     {% if success %}<div class="p-4 mb-4 text-green-800 bg-green-100 rounded">出勤紀錄已成功送出！</div>{% endif %}
@@ -58,3 +58,15 @@
         送出
     </button>
 </form>
+<script>
+    document.addEventListener('click', function (event) {
+        const searchBlock = document.getElementById('studentSearch');
+        const suggestions = document.getElementById('studentSuggestions');
+
+        // If the suggestions exist and the click is outside the searchBlock...
+        if (suggestions && !searchBlock.contains(event.target)) {
+          // Hide the suggestion list
+          suggestions.classList.add('hidden');
+        }
+    });
+</script>
