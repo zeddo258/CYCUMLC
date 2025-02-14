@@ -24,20 +24,6 @@ staticfiles/
 
 # TailwindCSS
 node_modules/
-tailwind.config.js
-postcss.config.js
-package-lock.json
-yarn.lock
-npm-debug.log*
-.pnp/
-.pnp.js
-
-# CSS Build Output
-static/css/*.css
-static/css/*.css.map
-static/js/*.js
-static/js/*.js.map
-
 # MacOS
 .DS_Store
 

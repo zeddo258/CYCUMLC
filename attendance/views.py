@@ -7,6 +7,9 @@ from .models import AttendanceRecord, Class, Student
 def index(request):
     return render(request, 'index.html')
 
+def addStudentModal(request):
+    return render(request, 'partial/add_student_modal.html')
+
 def attendance_form(request):
     '''
     if request.user.is_authenticated:

@@ -19,7 +19,7 @@
                             <path d="M13 15l3 0"></path>
                             <path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z"></path>
                         </svg>
-                        <span class="sidebar-text text-neutral-700 dark:text-neutral-200 text-sm group-hover/sidebar:translate-x-1 transition duration-150 inline-block" style="display: none; opacity:0;">Dashboard
+                        <span class="sidebar-text text-neutral-700 dark:text-neutral-200 transition-opacity text-sm group-hover/sidebar:translate-x-1 transition duration-150 " style="display: none; opacity:0;">點名紀錄
                         </span>
                     </a>
                     <a class="flex items-center justify-start gap-2 group/sidebar py-2" 
@@ -33,7 +33,7 @@
                             <path d="M6 21v-2a4 4 0 0 1 4 -4h4c.267 0 .529 .026 .781 .076"></path>
                             <path d="M19 16l-2 3h4l-2 3"></path>
                         </svg>
-                       <span class="sidebar-text text-neutral-700 dark:text-neutral-200 text-sm group-hover/sidebar:translate-x-1 transition duration-150 inline-block" style="display:none; opacity:0;">你好
+                       <span class="sidebar-text text-neutral-700 dark:text-neutral-200 text-sm group-hover/sidebar:translate-x-1 transition duration-150 inline-block" style="display:none; opacity:0;">學生管理
                        </span>
                     </a>
 
@@ -62,16 +62,19 @@
     <script>
     // 桌面版側邊選單滑鼠移入展開、移出收合的效果
     function expandSidebar(el) {
-           el.querySelectorAll('.sidebar-text').forEach(span => {
+     
+      el.classList.replace('w-[60px]', 'w-[200px]');
+      setTimeout( () => {
+        el.querySelectorAll('.sidebar-text').forEach(span => {
         span.style.display = 'inline-block';
         span.style.opacity = '1';
-      });
-        el.classList.replace('w-[60px]', 'w-[200px]');
-
+        }); 
+      }, 200);
+ 
     }
 
     function collapseSidebar(el) {
-            el.querySelectorAll('.sidebar-text').forEach(span => {
+      el.querySelectorAll('.sidebar-text').forEach(span => {
         span.style.display = 'none';
         span.style.opacity = '0';
       })
