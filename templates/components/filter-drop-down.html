@@ -1,0 +1,94 @@
+<div id="filterMenu"
+    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 left-0 right-0 bottom-0 z-[1000] flex  justify-center items-center w-full md:inset-0 h-[calc(100%)] max-h-full bg-black/70">
+    <div class="relative p-4 w-full max-w-2xl max-h-full">
+        <!-- Modal content -->
+        <div class="relative p-4 bg-gray-100 rounded-lg shadow dark:bg-gray-800 sm:p-5">
+            <!-- Modal header -->
+            <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+                
+                <button type="button" _="on click toggle .hidden on #filterMenu"
+                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                  >
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <form hx-get="/filter" hx-trigger="change delay:300ms" hx-target="#studentList">
+
+              <div class="grid grid-cols-2 gap-4">
+                <div class="z-10 w-auto h-auto p-3 bg-white rounded-lg shadow dark:bg-gray-700">
+                  <div class="w-full"> 
+                    <h6 class="mb-2 text-sm font-medium text-gray-900 dark:text-white">Nation</h6>
+                    <ul class="space-y-2 text-sm">
+                      {% for nation in nationality %}
+                      <li class="flex items-center">
+                        <input id="nation-{{ nation }}" type="checkbox" name="nation" value="{{ nation }}"
+                          class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                        <label for="nation-{{ nation }}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">
+                          {{ nation }}
+                        </label>
+                      </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="grid grid-rows-2 gap-4"> 
+                  <div class="z-10 w-auto p-3 bg-white rounded-lg shadow dark:bg-gray-700">
+                    <div class="w-full"> 
+                      <h6 class="mb-2 text-sm font-medium text-gray-900 dark:text-white">上課時段</h6>
+                      <ul class="space-y-2 text-sm">
+                        {% for time in study_time %}
+                        <li class="flex items-center">
+                          <input id="time-{{ time }}" type="checkbox" name="study_time" value="{{ time }}"
+                            class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                          <label for="time-{{ time }}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">
+                            {{ time }}
+                          </label>
+                        </li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="z-10 w-auto p-3 bg-white rounded-lg shadow dark:bg-gray-700">
+                    <div class="w-full"> 
+                      <h6 class="mb-2 text-sm font-medium text-gray-900 dark:text-white">性別</h6>
+                      <ul class="space-y-2 text-sm">
+                        
+                        <li class="flex items-center">
+                          <input id="male" type="checkbox" name="sex" value="Male"
+                            class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                          <label for="male" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">
+                            男
+                          </label>
+                        </li>
+
+                        <li class="flex items-center">
+                          <input id="female" type="checkbox" name="sex" value="Female"
+                            class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                          <label for="female" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">
+                            女
+                          </label>
+                        </li>
+
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+
+
+              </div>
+              
+            </form>
+        </div>
+    </div>
+</div>
+

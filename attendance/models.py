@@ -40,7 +40,7 @@ class Student(models.Model):
     sex = models.CharField(max_length=10, choices=[('Male', 'Male'), ('Female', 'Female')])
     birth = models.DateField()
     nationality = models.CharField(max_length=255)
-    study_time = models.CharField(max_length=255)
+    study_time = models.CharField(max_length=10, choices=[('9-12', '9-12'), ('10-12', '10-12'), ('12-15', '12-15'), ('13-15', '13-15')])
 
     def __str__(self):
         return f"{self.chinese_name} (ID: {self.id})"
