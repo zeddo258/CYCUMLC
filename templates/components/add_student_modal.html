@@ -1,7 +1,5 @@
-<!-- Create modal -->
-
 <div id="addStudentModal"
-    class=" hidden overflow-y-auto bg-black/70 overflow-x-hidden fixed top-0 left-0 right-0 bottom-0 z-[1000] flex  justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full ">
+    class=" hidden overflow-y-auto bg-black/70 overflow-x-hidden fixed top-0 left-0 right-0 bottom-0 z-[1000] flex  justify-center items-center w-full md:inset-0 h-[calc(100%)] max-h-full ">
     <div class="relative p-4 w-full max-w-2xl max-h-full">
         <!-- Modal content -->
         <div class="relative p-4 bg-gray-100 rounded-lg shadow dark:bg-gray-800 sm:p-5">
@@ -19,11 +17,12 @@
                     <span class="sr-only">Close modal</span>
                 </button>
             </div>
+
             <!-- Modal body -->
             <form method="post">
-                
+
                 <div class="gap-4 mb-4">
-                    
+
                     <div>
                         <label for="{{ form.id.id_for_label }}"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">護照號碼</label>
@@ -41,6 +40,14 @@
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">英文名字</label>
                         {{ form.english_name }}
                     </div>
+
+                    <div>
+                        <label for="{{ form.english_name.id_for_label }}"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">英文名字</label>
+                        {{ form.nationality }}
+                    </div>
+
+
 
                     <div class="grid grid-cols-3 gap-4">
                         <div>
@@ -61,12 +68,11 @@
                             {{ form.study_time }}
                         </div>
                     </div>
-                    
+
                 </div>
-                <button type="submit" 
-                    hx-get="add-student"
-                    hx-target="#mainContent"
-                    hx-swap="innerHTML"
+                <button type="submit" hx-post="student-form-handler/" hx-swap="beforebegin"
+                    hx-target="#studentsTableBody"
+                    onclick="document.body.dispatchEvent(new Event('add-student-event'));"
                     class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                     <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewbox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg">
