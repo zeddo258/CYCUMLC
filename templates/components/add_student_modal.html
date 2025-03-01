@@ -19,7 +19,7 @@
             </div>
 
             <!-- Modal body -->
-            <form method="post">
+            <form id="addStudentForm" method="post">
 
                 <div class="gap-4 mb-4">
 
@@ -43,7 +43,7 @@
 
                     <div>
                         <label for="{{ form.english_name.id_for_label }}"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">英文名字</label>
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">國際</label>
                         {{ form.nationality }}
                     </div>
 
@@ -64,15 +64,15 @@
 
                         <div>
                             <label for="{{ form.study_time.id_for_label }}"
-                                class=" mb-2 text-sm font-medium text-gray-900 dark:text-white">上課時段</label>
-                            {{ form.study_time }}
+                                class=" mb-2 text-sm font-medium text-gray-900 dark:text-white">上課第一天</label>
+                            {{ form.first_date }}
                         </div>
                     </div>
 
                 </div>
                 <button type="submit" hx-post="student-form-handler/" hx-swap="beforebegin"
                     hx-target="#studentsTableBody"
-                    onclick="document.body.dispatchEvent(new Event('add-student-event'));"
+                    hx-on="htmx:afterRequest:document.body.dispatchEvent(new Event('update-studentList'))"
                     class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                     <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewbox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg">

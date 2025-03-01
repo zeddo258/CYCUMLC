@@ -9,6 +9,6 @@ urlpatterns = [
         "student-form-handler/", views.handleAddStudentForm, name="student-form-handler"
     ),
     path("search-students/", views.search_students, name="search_students"),
-    path("filter-drop-down/", views.filter_dropdown, name="filter-drop-down"),
     path("filter/", views.filter, name="filter"),
+    path("get-nations/", views.get_nation, name="get-nations"),
 ]

@@ -6,9 +6,13 @@
     <td class="px-4 py-3">{{ s.english_name }}</td>
     <td class="px-4 py-3">{{ s.id }}</td>
     <td class="px-4 py-3">{{ s.birth }}</td>
-    <td class="px-4 py-3">{{ s.sex }}</td>
+    {% if s.sex == "Female" %}
+    <td class="px-4 py-3">女</td>
+    {% else %}
+    <td class="px-4 py-3">男</td>
+    {% endif %}
     <td class="px-4 py-3">{{ s.nationality }}</td>
-    <td class="px-4 py-3">{{ s.study_time }}</td>
+    <td class="px-4 py-3">{{ s.first_date }}</td>
     <td class="px-4 py-3 flex items-center justify-end">
         <button onclick="toggleDropdown('{{ s.id }}')"
             class="inline-flex items-center text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700 p-1.5 dark:hover-bg-gray-800 text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"

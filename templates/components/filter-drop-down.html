@@ -1,4 +1,5 @@
-<div id="filterMenu"
+<div id="filterMenu" hx-trigger="update-studentList from:body" hx-swap="innerHTML" hx-get="get-nations/"
+  hx-target="#filterNationBox" hx-include="#filterNationBox input[type='checkbox']"
   class="hidden overflow-y-auto overflow-x-hidden fixed top-0 left-0 right-0 bottom-0 z-[1000] flex  justify-center items-center w-full md:inset-0 h-[calc(100%)] max-h-full bg-black/70">
   <div class="relative p-4 w-full max-w-2xl max-h-full">
     <!-- Modal content -->
@@ -25,15 +26,7 @@
             <div class="w-full">
               <h6 class="mb-2 text-sm font-medium text-gray-900 dark:text-white">Nation</h6>
               <ul id="filterNationBox" class="space-y-2 text-sm">
-                {% for nation in nationality %}
-                <li class="flex items-center">
-                  <input id="nation-{{ nation }}" type="checkbox" name="nation" value="{{ nation }}"
-                    class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                  <label for="nation-{{ nation }}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">
-                    {{ nation }}
-                  </label>
-                </li>
-                {% endfor %}
+                {% include 'components/nation-list.html'%}
               </ul>
             </div>
           </div>

@@ -25,31 +25,31 @@ def handleAddStudentForm(request):
 
 def filter(request):
     nations = request.GET.getlist("nation")
-    study_times = request.GET.getlist("study_time")
     sex = request.GET.getlist("sex")
     students = Student.objects.all()
 
     if nations:
         students = students.filter(nationality__in=nations)
 
-    if study_times:
-        students = students.filter(study_time__in=study_times)
-
     if sex:
         students = students.filter(sex__in=sex)
     return render(request, "partial/student_suggestions.html", {"students": students})
 
 
-def filter_dropdown(request):
+def get_nation(request):
     nationality = Student.objects.values_list("nationality", flat=True).distinct()
-    study_time = Student.objects.values_list("study_time", flat=True).distinct()
-    sex = ["Male", "Female"]
+    # store the state of checked nation
+    selected_nations = request.GET.getlist("nation")
+
+    marked_nationality = [
+        {"nation": nation, "selected": nation in selected_nations}
+        for nation in nationality
+    ]
+
     context = {
-        "nationality": nationality,
-        "study_time": study_time,
-        "sex": sex,
+        "nationality": marked_nationality,
     }
-    return render(request, "partial/filter-drop-down.html", context)
+    return render(request, "components/nation-list.html", context)
 
 
 def student_management(request):
@@ -62,13 +62,16 @@ def student_management(request):
 
     # Render the filter box
     nationality = Student.objects.values_list("nationality", flat=True).distinct()
-    study_time = Student.objects.values_list("study_time", flat=True).distinct()
+
+    marked_nationality = [
+        {"nation": nation, "selected": None} for nation in nationality
+    ]
+
     sex = ["Male", "Female"]
 
     context = {
         "students": students,
-        "nationality": nationality,
-        "study_time": study_time,
+        "nationality": marked_nationality,
         "sex": sex,
         "form": StudentForm(),
     }
@@ -86,7 +89,6 @@ def search_students(request):
             models.Q(chinese_name__icontains=query)
             | models.Q(id__icontains=query)
             | models.Q(nationality__icontains=query)
-            | models.Q(study_time__icontains=query)
         )
     else:
         students = Student.objects.all()
