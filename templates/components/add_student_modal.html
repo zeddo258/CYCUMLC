@@ -19,7 +19,10 @@
             </div>
 
             <!-- Modal body -->
-            <form id="addStudentForm" method="post">
+            <form id="addStudentForm" method="post" hx-post="student-form-handler/" hx-swap="beforebegin"
+                hx-target="#studentsTableBody"
+                hx-on="htmx:afterRequest:document.body.dispatchEvent(new Event('update-studentList'))"
+                hx-on="htmx:afterRequest: this.hide()">
 
                 <div class="gap-4 mb-4">
 
@@ -70,9 +73,7 @@
                     </div>
 
                 </div>
-                <button type="submit" hx-post="student-form-handler/" hx-swap="beforebegin"
-                    hx-target="#studentsTableBody"
-                    hx-on="htmx:afterRequest:document.body.dispatchEvent(new Event('update-studentList'))"
+                <button type="submit"
                     class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                     <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewbox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg">
@@ -86,3 +87,13 @@
         </div>
     </div>
 </div>
+
+<script>
+    const addStudentForm = document.getElementById('addStudentForm');
+    const addStudentModal = document.getElementById('addStudentModal');
+    addStudentForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        addStudentForm.reset();
+        addStudentModal.classList.toggle('hidden');
+    });
+</script>

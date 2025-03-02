@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 from django.http import HttpResponseNotFound
 from django.shortcuts import redirect, render
@@ -8,6 +10,20 @@ from .models import Student
 
 def index(request):
     return render(request, "index.html")
+
+
+def editStudentInfo(request, student_id):
+    student = Student.objects.get(id=student_id)
+
+    html_date_format = student.birth.strftime("%Y-%m-%d")
+    html_first_date = student.first_date.strftime("%Y-%m-%d")
+    print(html_first_date)
+    context = {
+        "s": student,
+        "formatted_date": html_date_format,
+        "formatted_first_day": html_first_date,
+    }
+    return render(request, "components/edit_student_modal.html", context)
 
 
 def handleAddStudentForm(request):

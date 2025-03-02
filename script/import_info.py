@@ -39,8 +39,17 @@ def import_from(file_path):
             else:
                 birth_date_formatted = birth_date
 
-            if first_day and isinstance(birth_date, datetime):
+            if first_day and isinstance(first_day, datetime):
                 fday_formatted = first_day.strftime("%Y-%m-%d")
+
+            elif isinstance(first_day, str):
+                # Remove unwanted characters like \n and reformat
+                fdate_cleaned = first_day.strip()  # Remove trailing \n
+                fdate_obj = datetime.strptime(
+                    fdate_cleaned, "%Y/%m/%d"
+                )  # Parse the string
+                fday_formatted = fdate_obj.strftime("%Y-%m-%d")  # Format to YY-MM-DD
+
             else:
                 fday_formatted = first_day
 
@@ -52,7 +61,7 @@ def import_from(file_path):
                     "english_name": english_name,
                     "sex": sex,
                     "birth": birth_date_formatted,
-                    "first_date": first_day,
+                    "first_date": fday_formatted,
                     "nationality": nationality,
                 },
             )
