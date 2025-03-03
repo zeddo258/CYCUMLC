@@ -12,7 +12,7 @@ python manage.py runserver
 ```
 
 ## Docs
-📖 See the [Tailwindcss docs] (https://tailwindcss.com/docs/installation/tailwind-cli) 
+📖 See the [Tailwindcss docs](https://tailwindcss.com/docs/installation/tailwind-cli) 
             [HTMX docs](https://htmx.org) 
             [django docs](https://docs.djangoproject.com/en/5.1/)
             for details on supported features.
